@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatyerShooter : MonoBehaviour
+public class PlayerShooter : MonoBehaviour
 {
     PlayerInput _playerInput;
     Animator _animator;
