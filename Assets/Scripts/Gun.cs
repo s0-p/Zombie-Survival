@@ -86,6 +86,7 @@ public class Gun : MonoBehaviour
         _bulletLineRenderer.SetPosition(0, _trsfFire.position);
         _bulletLineRenderer.SetPosition(1, hitPos);
         _bulletLineRenderer.enabled = true;
+
         yield return new WaitForSeconds(0.03f);
         _bulletLineRenderer.enabled = false;
     }

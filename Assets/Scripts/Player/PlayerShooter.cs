@@ -30,6 +30,12 @@ public class PlayerShooter : MonoBehaviour
             if (_gun.Reload())
                 _animator.SetTrigger("Reload");
         }
+        UpdateUI();
+    }
+    void UpdateUI()
+    {
+        if (_gun != null && UIManager.Instance != null)
+            UIManager.Instance.UpdateAmmoText(_gun._magAmo, _gun._ammoRemain);
     }
     void OnAnimatorIK(int layerIndex)
     {
