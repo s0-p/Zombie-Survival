@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,12 +17,23 @@ public class GameManager : MonoBehaviour
         }
     }
     //---------------------------------
-    int _score = 0;
+    int _coin = 0;
+    //---------------------------------
+    public int _maxStage = 2;
+    int _stage = 1;
+    //---------------------------------
+    public GameObject _spawnPoints;
     //---------------------------------
     public bool IsGameOver { get; private set; }
     //-------------------------------------------------------------
     void Awake()
-    { if (Instance != this) Destroy(gameObject); }
+    {
+        if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+    }
     void Start()
     {
         FindObjectOfType<PlayerHealth>().OnDeath +=
@@ -36,8 +48,8 @@ public class GameManager : MonoBehaviour
     {
         if (!IsGameOver)
         {
-            _score += score;
-            UIManager.Instance.UpdateScoreText(_score);
+            _coin += score;
+            UIManager.Instance.UpdateCoinText(_coin);
         }
     }
 }

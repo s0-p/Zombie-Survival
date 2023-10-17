@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.46169513, g: 0.5124164, b: 0.58993304, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -229,17 +229,6 @@ Transform:
   m_Father: {fileID: 332665184}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &77914101 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5477458369099157123, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &143120383
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  _rotSpeed: 45
+  _rotSpeed: 250
 --- !u!114 &332665183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,6 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingHealth: 100
   _healthSlider: {fileID: 1546517915}
+  _upgradeHealth: 0
   _acDeath: {fileID: 8300000, guid: 4265c953ea2b74edabac0c972182dcba, type: 3}
   _acHit: {fileID: 8300000, guid: cbfb3a79860ac42c89b09fc131ef4b61, type: 3}
   _acItemPickup: {fileID: 8300000, guid: 519ad2e4de69341948a938bf2a31e33b, type: 3}
@@ -794,7 +784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &365449921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,12 +797,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce33a63b8259c44ca11de9815508c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damageMax: 40
-  _damageMin: 20
-  _healthMax: 200
-  _healthMin: 100
-  _speedMax: 200
-  _speedMin: 100
+  _damageMax: 10
+  _damageMin: 5
+  _damageIncrement: 10
+  _healthMax: 75
+  _healthMin: 25
+  _healthIncrement: 25
+  _speedMax: 30
+  _speedMin: 5
+  _speedIncrement: 5
   _strongEnemyColor: {r: 1, g: 0, b: 0, a: 1}
   _enemyPref: {fileID: 4933802977552781850, guid: 944ef06b83168c9468cf00b1bb342f43, type: 3}
   _spawnPoints:
@@ -873,22 +866,6 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4789895822770736, guid: 13259943c4d634186ac994d570bb3253, type: 3}
   m_PrefabInstance: {fileID: 1086415685}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &851136350 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5477458368865689128, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &853820395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5477458368868504221, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &875322104
 GameObject:
@@ -1166,6 +1143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f68c6abc810874883c4ebe3d7cb3fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxStage: 2
+  _ground: []
+  _spawnPoints: {fileID: 0}
 --- !u!4 &1072198274
 Transform:
   m_ObjectHideFlags: 0
@@ -1588,9 +1568,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 25
+  _upgradeDamage: 20
   _ammoRemain: 100
   _magCapacity: 25
   _magAmo: 0
+  _upgradeAmmo: 30
   _timeBetfire: 0.12
   _reloadTime: 1.8
   _trsfFire: {fileID: 2012081894}
@@ -1628,17 +1610,6 @@ Transform:
   m_Father: {fileID: 1493493324}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1208360101 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5477458370112228819, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1396032153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1915,17 +1886,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1563956569 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5477458370333606959, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1796215410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 3471071e07e6c4d41b1d47f005452a1b, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 1682d757d5ba25e4c990bd42bbc83b0f, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -2162,8 +2122,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993083913}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.78437984, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2183,7 +2143,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1378188243159790, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
       propertyPath: m_Name
-      value: Level Art
+      value: Stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378188243159790, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4449291502637212, guid: 49b04053ea2dc49ae8eae12418134ef1, type: 3}
       propertyPath: m_RootOrder
@@ -2356,27 +2320,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5477458368868504221, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8092736821847730938, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
---- !u!1 &8498700383693900572 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4175581933151754858, guid: c6971138d7123e742a6cbc26c56b8d1e, type: 3}
-  m_PrefabInstance: {fileID: 5477458369172312438}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8498700383693900573
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8498700383693900572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2931fca03dc4cc24f9b98b8e9f442969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ammoText: {fileID: 1563956569}
-  _scoreText: {fileID: 77914101}
-  _waveText: {fileID: 1208360101}
-  _gameoverUI: {fileID: 853820395}
-  _onRestart: {fileID: 851136350}

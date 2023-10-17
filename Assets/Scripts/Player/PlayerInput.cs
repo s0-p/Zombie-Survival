@@ -18,8 +18,6 @@ public class PlayerInput : MonoBehaviour
     {
         Move = Input.GetAxis(_moveAxisName);
         Rotate = Input.GetAxis(_rotateAxisName);
-        Debug.Log("Move : " + Move);
-        Debug.Log("Rotate : " + Rotate);
 
         Fire = Input.GetButton(_fireButtonName);
         Reload = Input.GetButtonDown(_reloadButtonName);

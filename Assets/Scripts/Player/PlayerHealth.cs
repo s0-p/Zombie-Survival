@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : LivingEntity
 {
     public Slider _healthSlider;
+    public int _upgradeHealth;
     //-------------------------------
     public AudioClip _acDeath;
     public AudioClip _acHit;
@@ -23,6 +24,11 @@ public class PlayerHealth : LivingEntity
         _animator = GetComponent<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerShooter = GetComponent<PlayerShooter>();
+
+    }
+    void Start()
+    {
+        UIManager.Instance._upgradeHealthButton.onClick.AddListener(UpgradeHealth);
     }
     protected override void OnEnable()
     {
@@ -73,5 +79,10 @@ public class PlayerHealth : LivingEntity
         _playerMovement.enabled = false;
         _playerShooter.enabled = false;
     }
-
+    //-----------------------------------------------------------------
+    public void UpgradeHealth() 
+    { 
+        _startingHealth += _upgradeHealth;
+        UIManager.Instance.SetActiveUpgradeUI(false);
+    }
 }

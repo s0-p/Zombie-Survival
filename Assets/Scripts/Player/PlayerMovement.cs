@@ -30,6 +30,5 @@ public class PlayerMovement : MonoBehaviour
     {
         float turn = _playerInput.Rotate * _rotSpeed * Time.deltaTime;
         _rigidBody.rotation = _rigidBody.rotation * Quaternion.Euler(0, turn, 0);
-        Debug.Log(_rigidBody.rotation.ToString());
     }
 }

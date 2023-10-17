@@ -50,11 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db0b4aa2ff0d3884a8300409f6ef0b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 100
+  _startingHealth: 25
   _acDeath: {fileID: 8300000, guid: b86f03005ed394911b43027aeaaedeb7, type: 3}
   _acHit: {fileID: 8300000, guid: c3d8accfc053f004ca665a1c8c4a6919, type: 3}
   _hitEffect: {fileID: 1971111699261798188}
-  _damage: 20
+  _damage: 1
   _attackTime: 0.5
   _lastAttackTime: 0
   _targetLaterMask:
@@ -118,7 +118,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

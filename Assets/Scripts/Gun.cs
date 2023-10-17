@@ -13,11 +13,13 @@ public class Gun : MonoBehaviour
     public STATE CurState { get; private set; }
     //-------------------------------------------
     public float _damage = 25f;
+    public float _upgradeDamage = 20f;
     float _fireDist = 50;
     //-------------------------------------------
     public int _ammoRemain = 100;
     public int _magCapacity = 25;
     public int _magAmo;
+    public int _upgradeAmmo = 30;
     //-------------------------------------------
     public float _timeBetfire = 0.12f;
     public float _reloadTime = 1.8f;
@@ -40,6 +42,11 @@ public class Gun : MonoBehaviour
         _bulletLineRenderer = GetComponent<LineRenderer>();
         _bulletLineRenderer.positionCount = 2;
         _bulletLineRenderer.enabled = false;
+    }
+    void Start()
+    {
+        UIManager.Instance._upgradeDamageButton.onClick.AddListener(UpgradeDamage);
+        UIManager.Instance._upgradeAmmoButton.onClick.AddListener(UpgradeAmmo);
     }
     void OnEnable()
     {
@@ -113,5 +120,16 @@ public class Gun : MonoBehaviour
         _ammoRemain -= ammoToFill;
 
         CurState = STATE.READY;
+    }
+    //--------------------------------------------------------------------
+    public void UpgradeDamage() 
+    { 
+        _damage += _upgradeDamage;
+        UIManager.Instance.SetActiveUpgradeUI(false);
+    }
+    public void UpgradeAmmo() 
+    { 
+        _magAmo += _upgradeAmmo;
+        UIManager.Instance.SetActiveUpgradeUI(false);
     }
 }
